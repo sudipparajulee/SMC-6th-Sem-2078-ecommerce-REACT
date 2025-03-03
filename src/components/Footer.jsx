@@ -1,4 +1,5 @@
 import React from 'react'
+import { RiPhoneFill, RiUser2Fill } from 'react-icons/ri'
 
 function Footer() {
   return (
@@ -19,8 +20,8 @@ function Footer() {
             </div>
             <div>
                 <h1 className='text-2xl font-bold'>Contact Us</h1>
-                <p>123-456-7890</p>
-                <p> 123-456-7890</p>
+                <p><RiPhoneFill className='inline' /> 123-456-7890</p>
+                <p><RiUser2Fill className='inline' /> 123-456-7890</p>
                 <p> 123-456-7890</p>
             </div>
 
