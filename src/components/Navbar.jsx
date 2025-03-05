@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 function Navbar(){
@@ -8,10 +8,10 @@ function Navbar(){
                 <img src={logo} alt="logo" className="h-20" />
                 <ul className="flex justify-center space-x-4">
                     <li>
-                        <Link to="/" className="text-blue-500">Home</Link>
+                        <NavLink to="/" className={({isActive}) => isActive ? "text-red-500 font-bold" : "text-blue-500"}>Home</NavLink>
                     </li>
                     <li>
-                        <Link to="/about" className="text-blue-500">About</Link>
+                        <NavLink to="/about" className={({isActive}) => isActive ? "text-red-500 font-bold" : "text-blue-500"}>About</NavLink>
                     </li>
                     <li><a href="#" className="text-blue-500">Services</a></li>
                     <li><a href="#" className="text-blue-500">Contact</a></li>
