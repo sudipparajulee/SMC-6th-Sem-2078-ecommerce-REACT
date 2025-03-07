@@ -15,6 +15,9 @@ function Navbar(){
                     </li>
                     <li><a href="#" className="text-blue-500">Services</a></li>
                     <li><a href="#" className="text-blue-500">Contact</a></li>
+                    <li>
+                        <NavLink to="/login" className={({isActive}) => isActive ? "text-red-500 font-bold" : "text-blue-500"}>Login</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>
