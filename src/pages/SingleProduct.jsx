@@ -27,7 +27,7 @@ function SingleProduct() {
                 <img src={product.image} alt='product' />
             </div>
             <div className='col-span-2'>
-                <h1 className='text-2xl font-bold'>{product.productname}</h1>
+                <h1 className='text-2xl font-bold'>{product.title}</h1>
                 <div className='flex items-center py-2'>
                     <RiStarFill className='text-yellow-500' />
                     <RiStarFill className='text-yellow-500' />
