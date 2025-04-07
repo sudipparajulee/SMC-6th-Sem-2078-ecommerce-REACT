@@ -8,7 +8,7 @@ function ProductContainer() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('https://fakestoreapi.com/products')
+    axios.get('http://127.0.0.1:8000/api/latestproduct/')
       .then((response) => {
         setProducts(response.data);
       })
