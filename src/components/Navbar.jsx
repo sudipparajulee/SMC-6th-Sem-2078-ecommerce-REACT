@@ -22,8 +22,8 @@ function Navbar(){
                     </li>
                     
                     {categories.map((category) => (
-                        <li key={category.id} className='text-blue-500'>
-                            {category.name}
+                        <li key={category.id}>
+                            <NavLink to={`/categoryproducts/${category.id}`} className={({isActive}) => isActive ? "text-red-500 font-bold" : "text-blue-500"}>{category.name}</NavLink>
                         </li>
                     ))}
                     
