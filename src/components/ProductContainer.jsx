@@ -15,8 +15,8 @@ function ProductContainer() {
       })
   }, []);
 
-  const handleClick = (product) => {
-    navigation(`/product/${product.id}`, { state: { product } });
+  const handleClick = (id) => {
+    navigation(`/product/${id}`);
   }
 
   return (
@@ -24,7 +24,7 @@ function ProductContainer() {
         <div className='grid grid-cols-4 gap-4 px-20 py-10'>
             {products.map((product) => (
                 // <ProductCard key={product.id} productname={product.productname} price={product.price} description={product.description} />
-                <ProductCard key={product.id} product={product} onClick={() => handleClick(product)} />
+                <ProductCard key={product.id} product={product} onClick={() => handleClick(product.id)} />
             ))}
         </div>
     </div>
