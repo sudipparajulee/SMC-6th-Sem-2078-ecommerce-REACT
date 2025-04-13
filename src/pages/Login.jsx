@@ -9,6 +9,8 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  //success message
+  const [success, setSuccess] = useState('')
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
@@ -25,9 +27,12 @@ export const Login = () => {
     })
     if (res.status === 200) {
       // Handle successful login
-      localStorage.setItem('token', res.data.token)
-      localStorage.setItem('user', JSON.stringify(res.data.user))
-      location.href = '/'
+      setSuccess('Login successful. Redirecting...')
+      setTimeout(() => {
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+        location.href = '/'
+      }, 1000)
     } else {
       // Handle login error
       console.error('Login failed')
@@ -37,6 +42,13 @@ export const Login = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword)
   }
+
+  //redirect to home page if user is already logged in
+  const logintoken = localStorage.getItem('token')
+  if (logintoken) {
+    location.href = '/'
+  }
+
   return (
     <div>
         <Topbar />
@@ -44,6 +56,7 @@ export const Login = () => {
         <div className='flex justify-center items-center py-20'>
             <div className='bg-gray-100 shadow w-1/3 p-10 rounded-lg'>
                 <h1 className='text-2xl font-bold mb-5'>Login</h1>
+                <p className='text-green-600 text-sm mb-5'>{success}</p>
                 <form className='flex flex-col gap-5' onSubmit={handleSubmit}>
                     <input type='text' placeholder='Email' className='p-2 rounded-md bg-white' value={email} onChange={handleEmailChange} />
                     <div className='relative'>
