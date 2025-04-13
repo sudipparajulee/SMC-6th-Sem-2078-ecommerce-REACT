@@ -7,6 +7,7 @@ import About from './pages/About.jsx'
 import SingleProduct from './pages/SingleProduct.jsx'
 import { Login } from './pages/Login.jsx'
 import CategoryProducts from './pages/CategoryProducts.jsx'
+import MyCart from './pages/MyCart.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/product/:id' element={<SingleProduct />} />
         <Route path='/login' element={<Login />} />
         <Route path='/categoryproducts/:id' element={<CategoryProducts />} />
+        <Route path='/mycart' element={<MyCart />} />
       </Routes>
     </Router>
   </StrictMode>,
