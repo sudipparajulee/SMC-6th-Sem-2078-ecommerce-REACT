@@ -6,6 +6,7 @@ import { Ri24HoursFill, RiBankCard2Fill, RiShoppingCart2Fill, RiStarFill, RiTruc
 import { useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL, API_URL_PRODUCT } from '../constants/apiConstant'
+import { toast } from 'react-toastify'
 
 function SingleProduct() {
     const { id } = useParams();
@@ -43,7 +44,12 @@ function SingleProduct() {
             }
         })
         .then((response) => {
-            alert(response.data.message)
+            if(response.status === 200) {
+                toast.success(response.data.message)
+            }
+            else {
+                toast.error('Error: ' + response.data.message)
+            }
         })
     }
   return (

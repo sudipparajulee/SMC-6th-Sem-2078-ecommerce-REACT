@@ -12,6 +12,21 @@ function MyCart() {
         location.href = '/login'
     }
 
+    const handleRemoveCart = (cartId) => {
+      axios.get(`${API_URL}/cart/destroy/${cartId}`, {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      })
+      .then((response) => {
+          alert('Cart removed successfully');
+          setCarts(carts.filter(cart => cart.id !== cartId));
+      })
+      .catch((error) => {
+          console.error('Error removing cart:', error);
+      });
+  }
+
     useEffect(() => {
         axios.get(`${API_URL}/cart`,{
             headers: {
@@ -25,6 +40,8 @@ function MyCart() {
         })
     }
     , []);
+
+    
   return (
     <div>
         <Topbar />
@@ -40,7 +57,7 @@ function MyCart() {
             <p className='text-sm'>Total: {cart.product.price * cart.qty}</p>
             <div className='flex flex-col items-end'>
                 <div>
-                <button className='bg-red-500 text-white px-4 py-2 rounded mt-2'>Remove</button>
+                <button className='bg-red-500 text-white px-4 py-2 rounded mt-2 cursor-pointer' onClick={handleRemoveCart(cart.id)}>Remove</button>
                 </div>
                 <div>
                 <button className='bg-green-500 text-white px-4 py-2 rounded mt-2'>Checkout</button>

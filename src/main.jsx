@@ -8,9 +8,13 @@ import SingleProduct from './pages/SingleProduct.jsx'
 import { Login } from './pages/Login.jsx'
 import CategoryProducts from './pages/CategoryProducts.jsx'
 import MyCart from './pages/MyCart.jsx'
+import { ToastContainer } from 'react-toastify'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToastContainer  
+    autoClose = {2000}
+    />
     <Router>
       <Routes>
         <Route path='/' element={<App />} />
