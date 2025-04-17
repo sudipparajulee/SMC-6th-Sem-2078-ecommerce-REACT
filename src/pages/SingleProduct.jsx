@@ -3,14 +3,17 @@ import { Topbar } from '../components/Topbar'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Ri24HoursFill, RiBankCard2Fill, RiShoppingCart2Fill, RiStarFill, RiTruckFill, RiVerifiedBadgeFill } from 'react-icons/ri'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { API_URL, API_URL_PRODUCT } from '../constants/apiConstant'
 import { toast } from 'react-toastify'
+import ProductCard from '../components/ProductCard'
 
 function SingleProduct() {
     const { id } = useParams();
     const [product, setProduct] = useState([])
+    const [relatedproducts, setRelatedProducts] = useState([])
+    const navigation = useNavigate();
 
     const [qty, setQty] = useState(1)
     const increment = () => {
@@ -24,10 +27,11 @@ function SingleProduct() {
     useEffect(() => {
         axios.get(`${API_URL}/viewproduct/${id}`)
             .then((response) => {
-                setProduct(response.data);
+                setProduct(response.data.product);
+                setRelatedProducts(response.data.relatedproducts);
             })
     }
-    , []);
+    , [id]);
     
     const handleAddToCart = () => {
         const token = localStorage.getItem('token')
@@ -51,6 +55,10 @@ function SingleProduct() {
                 toast.error('Error: ' + response.data.message)
             }
         })
+    }
+
+    const handleClick = (id) => {
+        navigation(`/product/${id}`);
     }
   return (
     <div>
@@ -88,6 +96,16 @@ function SingleProduct() {
                 <p className='flex items-center gap-2'><RiBankCard2Fill /> Secure Payments </p>
             </div>
         </div>
+
+        <div className='px-24 py-10'>
+            <h1 className='font-bold text-xl'>Related Products</h1>
+            <div className='grid grid-cols-4 gap-4 px-20 py-10'>
+            {relatedproducts.map((product) => (
+                <ProductCard key={product.id} product={product} onClick={() => handleClick(product.id)} />
+            ))}
+        </div>
+        </div>
+
         <Footer />
     </div>
   )
