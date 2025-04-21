@@ -8,6 +8,7 @@ import axios from 'axios'
 import { API_URL, API_URL_PRODUCT } from '../constants/apiConstant'
 import { toast } from 'react-toastify'
 import ProductCard from '../components/ProductCard'
+import Chart from '../components/Chart'
 
 function SingleProduct() {
     const { id } = useParams();
@@ -106,7 +107,7 @@ function SingleProduct() {
         </div>
         </div>
 
-        <Footer />
+        <Chart />
     </div>
   )
 }
